@@ -149,10 +149,10 @@ class UI:
         self.principal_window.buttons_frame.config(background="#220660", borderwidth=0)
         self.principal_window.buttons_frame.grid(row=1, column=0)
         self.principal_window.frame_empty_3 = tk.Label(self.principal_window.buttons_frame,
-                                                       text="                                                                       ",
+                                                       text="                                                                         ",
                                                        background="#220660")
         self.principal_window.frame_empty_4 = tk.Label(self.principal_window.buttons_frame,
-                                                       text="                                                                       ",
+                                                       text="                                                                          ",
                                                        background="#220660")
         self.principal_window.frame_empty_3.grid(row=0, column=0)
         self.principal_window.frame_empty_4.grid(row=0, column=4)

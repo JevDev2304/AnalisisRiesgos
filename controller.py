@@ -29,8 +29,7 @@ class Controller:
     def create_window_order(self):
         self.vista.create_window_order(self)
 
-    def create_window_delete_order(self):
-        self.vista.create_window_delete_order(self)
+
 
 
 
@@ -88,43 +87,6 @@ class Controller:
             self.vista.open_menu()
 
 
-
-
-
-
-
-    def diamante_corte_window(self):
-        self.vista.create_window_entry_diamante_corte(self)
-    def diamante_bruto_window(self):
-        self.vista.create_window_entry_diamante_bruto(self)
-    def get_info_diamante_corte(self):
-        try:
-            diamante_info=self.vista.obtener_info_diamante_corte()
-            corte=diamante_info[0]
-            tamano=diamante_info[1]
-            grabado=diamante_info[2]
-            origen=diamante_info[3]
-
-        except Exception as error:
-            tk.messagebox.showerror(str(error),str(error))
-        else:
-
-            self.vista.mostrar_menu_elegir_diamante()
-
-    def get_info_diamante_bruto(self):
-        try:
-            diamante_info = self.vista.obtener_info_diamante_bruto()
-            tamano = diamante_info[0]
-            grabado = diamante_info[1]
-            origen = diamante_info[2]
-
-        except Exception as error:
-            tk.messagebox.showerror(str(error), str(error))
-        else:
-            self.vista.mostrar_menu_elegir_diamante_bruto()
-
-    def volver_eleccion_diamantes_principal(self):
-        self.vista.volver_menu()
 
 
 
