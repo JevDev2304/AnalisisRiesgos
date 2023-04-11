@@ -132,7 +132,7 @@ class UI:
         self.principal_window.ventana.title(
             "Analisis de Riesgos en Metodologías agiles en Desarrollo de Software " + username)
         self.principal_window.ventana.config(background="#220660")
-        self.principal_window.ventana.maxsize(1280, 720)
+        self.principal_window.ventana.maxsize(1080,720)
 
         self.principal_window.title_frame = tk.Frame(self.principal_window.ventana)
         self.principal_window.title_frame.config(background="#220660")
