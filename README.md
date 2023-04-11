@@ -10,7 +10,7 @@
 
 - Implementación de POO. 👨🏻‍💻
 
--Implementación de Modelo-Vista-Controlador. 🤖
+- Implementación de Modelo-Vista-Controlador. 🤖
 
 - Entre otras muchas librerias que se usaron para la implementación del proyecto.📖
 
