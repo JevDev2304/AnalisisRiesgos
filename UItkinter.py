@@ -22,11 +22,13 @@ class UI:
         self.register_username = tk.PhotoImage(file="imagenes/NombreUsuarioAnalisis.png")
         self.register_mail = tk.PhotoImage(file="imagenes/correoRegistroAnalisRiesgo.png")
         self.register_password = tk.PhotoImage(file="imagenes/ContraseñaRegistroAnalisisRiesgo.png")
+        self.small_register_password= tk.PhotoImage(file="imagenes/ContraseniaPequena.png")
         self.log_out = tk.PhotoImage(file="imagenes/CerrarSesion.png")
         self.change_password = tk.PhotoImage(file="imagenes/CambiarContraseñaSesion.png")
         self.actual_password = tk.PhotoImage(file="imagenes/ContraseñaActual.png")
         self.new_password = tk.PhotoImage(file="imagenes/NuevaContraseña.png")
         self.delete_account = tk.PhotoImage(file="imagenes/EliminarCuenta.png")
+        self.verify_password = tk.PhotoImage(file="imagenes/VerificarContraseña.png")
 
         self.register_name_small = self.register_name.subsample(2)
         self.register_username_small = self.register_username.subsample(2)
@@ -63,63 +65,56 @@ class UI:
         self.ventana_log_out.state("zoomed")
 
     def obtener_info_order(self):
-        try:
             id = self.entry_id.get()
             password = self.entry_password.get()
             if " " in id:
                 raise Exception("El ID no puede contener espacios")
-            if " " in password:
+            elif " " in password:
                 raise Exception("No puede contener espacios la contraseña")
-        except Exception as error:
-            tk.messagebox.showinfo(str(error), str(error))
-        else:
-            return [id, password]
+
+            else:
+                return [id, password]
 
     def obtener_info_register(self):
-        try:
-            nombre = self.entry_name.get()
-            nombre_sin_espacios = nombre.replace(" ", "")
-            nombre_usuario = self.entry_id.get()
-            correo = self.entry_correo.get()
-            contrasenia = self.entry_password.get()
-            test_nombre_sin_espacios = nombre_sin_espacios.isalpha()
-            test_correo = ("@" in correo)
-            if test_nombre_sin_espacios is False:
-                raise Exception("No ingresaste bien el nombre")
-            if test_correo is False:
-                raise Exception("No ingresaste bien el correo")
-            if " " in contrasenia:
-                raise Exception("La contraseña no contiene espacios")
-            if " " in nombre_usuario:
-                raise Exception("El nombre de usuario es sin espacios")
-        except Exception as error:
-            tk.messagebox.showinfo(str(error), str(error))
+
+        nombre = self.entry_name.get()
+        nombre_sin_espacios = nombre.replace(" ", "")
+        nombre_usuario = self.entry_id.get()
+        correo = self.entry_correo.get()
+        contrasenia = self.entry_password.get()
+        v_contrasenia = self.entry_confirm_password.get()
+        test_nombre_sin_espacios = nombre_sin_espacios.isalpha()
+        test_correo = ("@" in correo)
+        if test_nombre_sin_espacios is False:
+            raise Exception("No ingresaste bien el nombre")
+        elif test_correo is False:
+            raise Exception("No ingresaste bien el correo")
+        elif " " in contrasenia:
+            raise Exception("La contraseña no contiene espacios")
+        elif " " in nombre_usuario:
+            raise Exception("El nombre de usuario es sin espacios")
+        elif v_contrasenia != contrasenia:
+            raise Exception("La verificación de contraseña no es correcta")
         else:
             return [nombre, nombre_usuario, correo, contrasenia]
 
+
     def obtener_info_change_password(self):
-        try:
             old_password = self.entry_old_password.get()
             new_password = self.entry_password.get()
             if " " in old_password:
                 raise Exception("Las contraseñas no pueden contener espacios")
-            if " " in new_password:
+            elif " " in new_password:
                 raise Exception("Las contraseñas  no pueden contener espacios")
-        except Exception as error:
-            tk.messagebox.showinfo(str(error), str(error))
-        else:
-            return [old_password, new_password]
+            else:
+                return [old_password, new_password]
 
     def obtener_info_delete_account(self):
-        try:
             password = self.entry_old_password.get()
             if " " in password:
                 raise Exception("Las contraseña no pueden contener espacios")
-
-        except Exception as error:
-            tk.messagebox.showinfo(str(error), str(error))
-        else:
-            return password
+            else:
+                return password
 
     # CREACION DE VENTANAS
     def create_principal_window(self, controller, username=""):
@@ -234,7 +229,7 @@ class UI:
                                      background="white", justify="center", bd=4, width=35, borderwidth=0, )
         self.entry_correo.grid(row=2, column=2)
 
-        self.label_password = tk.Label(self.ventana_user_register_buttons_frame, image=self.register_password,
+        self.label_password = tk.Label(self.ventana_user_register_buttons_frame, image=self.small_register_password,
                                        borderwidth=0,
                                        background="#220660")
         self.label_password.grid(row=3, column=1)
@@ -243,13 +238,22 @@ class UI:
                                        background="white", justify="center", bd=4, width=35, borderwidth=0, show="*")
         self.entry_password.grid(row=3, column=2)
 
+        self.label_confirm_password = tk.Label(self.ventana_user_register_buttons_frame, image=self.verify_password,
+                                       borderwidth=0,
+                                       background="#220660")
+        self.label_confirm_password.grid(row=4, column=1)
+        self.entry_confirm_password = tk.Entry(self.ventana_user_register_buttons_frame, font=("Calibri bold", 25),
+                                       fg="#220660",
+                                       background="white", justify="center", bd=4, width=35, borderwidth=0, show="*")
+        self.entry_confirm_password.grid(row=4, column=2)
+
         self.button_back = tk.Button(self.ventana_user_register_buttons_frame, image=self.menu, borderwidth=0,
                                      background="#220660", command=self.volver_menu)
         self.button_final_register = tk.Button(self.ventana_user_register_buttons_frame, image=self.user_register,
                                                borderwidth=0,
                                                background="#220660", command=controller.getinforegister)
-        self.button_back.grid(row=4, column=1)
-        self.button_final_register.grid(row=4, column=2)
+        self.button_back.grid(row=5, column=1)
+        self.button_final_register.grid(row=5, column=2)
 
         self.ventana_user_register.mainloop()
     def create_window_order(self, controller):

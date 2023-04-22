@@ -9,9 +9,7 @@ class User:
 
 
 
-class Administrator(User):
-    def __init__(self, username: str, name: str, password: str, mail: str):
-        User.__init__(username, name, password, mail)
+
 
 
 class Program:
@@ -24,7 +22,7 @@ class Program:
     def sign_up(self, name, username, mail, password):
         for user in self.user_list:
             if user.username == username:
-                raise Exception("El Usuario ya existe", "El Usuario ya existe")
+                raise Exception("ya existe un usuario con el nombre de usuario ingresado, cambia tu nombre de usuario para poder registrarte")
         else:
          newUser = User(username, name, password, mail)
          print(newUser.username + " " + password)
