@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import messagebox
+
 class PrincipalWindow:
     def __init__(self):
         self.ventana = tk.Tk()
@@ -29,6 +29,9 @@ class UI:
         self.new_password = tk.PhotoImage(file="imagenes/NuevaContraseña.png")
         self.delete_account = tk.PhotoImage(file="imagenes/EliminarCuenta.png")
         self.verify_password = tk.PhotoImage(file="imagenes/VerificarContraseña.png")
+        self.my_project = tk.PhotoImage(file = "imagenes/miProyecto.png")
+        self.see_taxonomy = tk.PhotoImage(file="imagenes/verTaxonomia.png")
+        self.delete_risk = tk.PhotoImage(file = "imagenes/EliminarRiesgo.png")
 
         self.register_name_small = self.register_name.subsample(2)
         self.register_username_small = self.register_username.subsample(2)
@@ -61,6 +64,10 @@ class UI:
 
     def back_create_window_log_out_delete_account(self):
         self.ventana_delete_account.destroy()
+        self.ventana_log_out.iconify()
+        self.ventana_log_out.state("zoomed")
+    def back_my_proyect_window_log_out(self):
+        self.ventana_my_project.destroy()
         self.ventana_log_out.iconify()
         self.ventana_log_out.state("zoomed")
 
@@ -357,7 +364,7 @@ class UI:
         self.ventana_user_register_frame_empty_4.grid(row=0, column=3)
 
         self.ventana_user_register_title = tk.Label(self.ventana_user_register_title_frame)
-        self.ventana_user_register_title.config(font=("Candara", 48), fg="white", image=self.logo, background="#220660")
+        self.ventana_user_register_title.config(font=("Candara", 48), fg="white", image=self.logo_pequeno, background="#220660")
         self.ventana_user_register_title.grid(row=0, column=1)
 
         self.button_final_register = tk.Button(self.ventana_user_register_buttons_frame, image=self.log_out,
@@ -366,11 +373,15 @@ class UI:
         self.button_change_password = tk.Button(self.ventana_user_register_buttons_frame, image=self.change_password,
                                                 borderwidth=0,
                                                 background="#220660", command=controller.change_password)
+        self.button_my_project = tk.Button(self.ventana_user_register_buttons_frame, image=self.my_project,
+                                                borderwidth=0,
+                                                background="#220660", command=controller.my_project)
         self.button_delete_account = tk.Button(self.ventana_user_register_buttons_frame, image=self.delete_account,
                                                borderwidth=0,
                                                background="#220660", command=controller.delete_account)
         self.button_delete_account.grid(row=5, column=2)
         self.button_change_password.grid(row=3, column=2)
+        self.button_my_project.grid(row=2,column=2)
         self.button_final_register.grid(row=4, column=2)
         self.button_delete_account.grid(row=5, column=2)
         self.labelbutton = tk.Label(self.ventana_user_register_buttons_frame,
@@ -502,8 +513,117 @@ class UI:
 
         self.ventana_delete_account.mainloop()
 
+    def create_window_my_project(self, controller, username=""):
+        self.principal_window.ventana.withdraw()
+        self.ventana_my_project = tk.Toplevel()
+        self.ventana_my_project.iconbitmap("imagenes/logo.ico")
+        self.ventana_my_project.geometry("1080x900")
+        self.ventana_my_project.resizable(False, False)
+        self.ventana_my_project.title("ADRMA usuario: " + username)
+        self.ventana_my_project.config(background="#220660")
+        self.ventana_my_project.maxsize(1080, 900)
+        self.ventana_my_project.state("zoomed")
 
+        self.ventana_user_register_title_frame = tk.Frame(self.ventana_my_project)
+        self.ventana_user_register_title_frame.config(background="#220660")
+        self.ventana_user_register_frame_empty_1 = tk.Label(self.ventana_user_register_title_frame,
+                                                                text="                                                                                            ",
+                                                                background="#220660")
+        self.ventana_user_register_frame_empty_2 = tk.Label(self.ventana_user_register_title_frame,
+                                                                text="                                              ",
+                                                                background="#220660")
 
+        self.ventana_user_register_title_frame.grid(row=0, column=0)
+        self.ventana_user_register_frame_empty_1.grid(row=0, column=0)
+        self.ventana_user_register_frame_empty_2.grid(row=0, column=2)
 
+        self.ventana_user_register_buttons_frame = tk.Frame(self.ventana_my_project)
+        self.ventana_user_register_buttons_frame.config(background="#220660", borderwidth=0)
+        self.ventana_user_register_buttons_frame.grid(row=1, column=0)
+        self.ventana_user_register_frame_empty_3 = tk.Label(self.ventana_user_register_buttons_frame,
+                                                                text="                           ",
+                                                                background="#220660")
+        self.ventana_user_register_frame_empty_4 = tk.Label(self.ventana_user_register_buttons_frame,
+                                                                text="                                                       ",
+                                                                background="#220660")
+        self.ventana_user_register_frame_empty_3.grid(row=0, column=0)
+        self.ventana_user_register_frame_empty_4.grid(row=0, column=3)
 
+        self.ventana_user_register_title = tk.Label(self.ventana_user_register_title_frame)
+        self.ventana_user_register_title.config(font=("Candara", 48), fg="white", image=self.logo_pequeno,
+                                                    background="#220660")
+        self.ventana_user_register_title.grid(row=0, column=1)
+
+        self.button_see_taxonomy = tk.Button(self.ventana_user_register_buttons_frame, image=self.see_taxonomy,
+                                                   borderwidth=0,
+                                                   background="#220660", command=controller.open_taxonomy)
+        self.button_delete_risk = tk.Button(self.ventana_user_register_buttons_frame, image=self.delete_risk,
+                                             borderwidth=0,
+                                             background="#220660", command=self.create_window_delete_risk)
+
+        self.button_back = tk.Button(self.ventana_user_register_buttons_frame, image=self.menu, borderwidth=0,
+                                     background="#220660", command=self.back_my_proyect_window_log_out)
+
+        self.button_see_taxonomy.grid(row=2, column=2)
+        self.button_delete_risk.grid(row=3,column=2)
+        self.button_back.grid(row=4, column=2)
+        self.labelbutton = tk.Label(self.ventana_user_register_buttons_frame,
+                                        text="                                                                                              ",
+                                        background="#220660")
+        self.labelbutton.grid(row=4, column=1)
+
+        self.ventana_my_project.mainloop()
+
+    def create_window_delete_risk(self,username=""):
+        self.ventana_my_project.withdraw()
+        self.ventana_delete_risk = tk.Toplevel()
+        self.ventana_delete_risk.iconbitmap("imagenes/logo.ico")
+        self.ventana_delete_risk.geometry("1080x900")
+        self.ventana_delete_risk.resizable(False, False)
+        self.ventana_delete_risk.title("ADRMA usuario: " + username)
+        self.ventana_delete_risk.config(background="#220660")
+        self.ventana_delete_risk.maxsize(1080, 900)
+        self.ventana_delete_risk.state("zoomed")
+
+        self.ventana_user_register_title_frame_delete_risk = tk.Frame(self.ventana_delete_risk)
+        self.ventana_user_register_title_frame_delete_risk.config(background="#220660")
+        self.ventana_user_register_frame_empty_1 = tk.Label(self.ventana_user_register_title_frame_delete_risk,
+                                                                text="                                                                                                               ",
+                                                                background="#220660")
+        self.ventana_user_register_frame_empty_2 = tk.Label(self.ventana_user_register_title_frame_delete_risk,
+                                                                text="                                                           ",
+                                                                background="#220660")
+
+        self.ventana_user_register_title_frame_delete_risk.grid(row=0, column=0)
+        self.ventana_user_register_frame_empty_1.grid(row=0, column=0)
+        self.ventana_user_register_frame_empty_2.grid(row=0, column=2)
+
+        self.ventana_user_register_buttons_frame = tk.Frame(self.ventana_delete_risk)
+        self.ventana_user_register_buttons_frame.config(background="#220660", borderwidth=0)
+        self.ventana_user_register_buttons_frame.grid(row=1, column=0)
+        self.ventana_user_register_frame_empty_3 = tk.Label(self.ventana_user_register_buttons_frame,
+                                                                text="                                                                  ",
+                                                                background="#220660")
+        self.ventana_user_register_frame_empty_4 = tk.Label(self.ventana_user_register_buttons_frame,
+                                                                text="         ",
+                                                                background="#220660")
+        self.ventana_user_register_frame_empty_3.grid(row=0, column=0)
+        self.ventana_user_register_frame_empty_4.grid(row=0, column=3)
+
+        self.ventana_user_register_title = tk.Label(self.ventana_user_register_title_frame_delete_risk)
+        self.ventana_user_register_title.config(font=("Candara", 48), fg="white", image=self.logo_pequeno,
+                                                    background="#220660")
+        self.ventana_user_register_title.grid(row=0, column=1)
+
+        self.label_title_delete_tax = tk.Label(self.ventana_user_register_buttons_frame,text=" Elige el riesgo que quieres eliminar de tu taxonomia : ", font=("Candara",24),
+                                                fg="white",
+                                                 background="#220660")
+
+        self.button_back = tk.Button(self.ventana_user_register_buttons_frame, image=self.menu, borderwidth=0,
+                                         background="#220660", command="")
+
+        self.label_title_delete_tax.grid(row=2, column=2)
+        self.button_back.grid(row=4, column=2)
+
+        self.ventana_my_project.mainloop()
 

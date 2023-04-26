@@ -6,8 +6,37 @@ class User:
         self.password = password
         self.datetime = datetime
         self.mail = mail
+        self.project = Project()
+
+class Project:
+
+    def  __init__(self):
+        self.myTaxonomy: Taxonomy= Taxonomy()
+    def eliminar_riesgo(self,nombreRiesgo : str):
+        self.myTaxonomy.risks.pop(nombreRiesgo)
+    def agregar_riesgo(self,nombreRiesgo : str):
+        for riesgo in self.myTaxonomy.risks.keys():
+            if riesgo == nombreRiesgo:
+                raise Exception("El riesgo ya esta agregado en la taxonomia")
+        else:
+            self.myTaxonomy.risks[nombreRiesgo]=Taxonomy().risks[nombreRiesgo]
 
 
+class Taxonomy:
+    def __init__(self):
+        self.risks = {"requerimientos":"Tiene requerimientos bien definidos.",
+                "diseño": "La traducción de los requerimientos al diseño del software es sencilla.",
+                "pruebasUnitarias": "El software cuenta con pruebas unitarias.",
+                "especialidadesIngenieria": "El software es seguro, fiable y se encuentra protegido.",
+                "recursos": "Las condiciones de tiempos, personal y fechas  han sido cumplidas",
+                "contrato": "Se estan cumpliendo los terminos y condiciones firmados en el contrato",
+                "intermediarios": "No hay ningún tipo de problema con los intermediarios del proyecto",
+                "proceso":"El proceso de desarrollo,desde la planeación hasta la documentación esta siendo bien implementado",
+                "sistema": "Tienen todas las herramientas necesarias para desarrollar el proyecto",
+                "presupuesto": "Poseen de el presupuesto necesario para el proyecto",
+                "tiempos": "Hay cumplimiento de avance en las fechas estipuladas por el equipo de desarrollo",
+                "cooperacion": "Hay cooperación y buena actitud en el equipo de trabajo",
+                }
 
 
 
@@ -57,6 +86,8 @@ class Program:
                 usuarioExiste = 1
         if usuarioExiste == 0:
             raise Exception("Ingresaste mal la contraseña", "Intenta de nuevo")
+
+
 
 
 

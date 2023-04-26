@@ -1,5 +1,5 @@
 import tkinter.messagebox
-
+import webbrowser
 
 from UItkinter import UI
 from modelo import Program
@@ -84,6 +84,14 @@ class Controller:
             self.vista.ventana_delete_account.destroy()
             self.vista.ventana_log_out.destroy()
             self.vista.open_menu()
+    def my_project(self):
+        self.vista.ventana_log_out.withdraw()
+        usuario = self.modelo.isLogIn
+        nombre = usuario.username
+        self.vista.create_window_my_project(self, nombre)
+    def open_taxonomy(self):
+        webbrowser.open('https://drive.google.com/file/d/1EIllGodINQhz8BxR7LjMzEEdcJP0T8CN/view?usp=sharing')
+
 
 
 
