@@ -1,4 +1,5 @@
 import tkinter as tk
+import tkinter.messagebox
 
 class PrincipalWindow:
     def __init__(self):
@@ -32,6 +33,7 @@ class UI:
         self.my_project = tk.PhotoImage(file = "imagenes/miProyecto.png")
         self.see_taxonomy = tk.PhotoImage(file="imagenes/verTaxonomia.png")
         self.delete_risk = tk.PhotoImage(file = "imagenes/EliminarRiesgo.png")
+        self.restart_taxonomy = tk.PhotoImage(file = "imagenes/RestablecerTaxonomia.png")
 
         self.register_name_small = self.register_name.subsample(2)
         self.register_username_small = self.register_username.subsample(2)
@@ -559,14 +561,18 @@ class UI:
                                                    background="#220660", command=controller.open_taxonomy)
         self.button_delete_risk = tk.Button(self.ventana_user_register_buttons_frame, image=self.delete_risk,
                                              borderwidth=0,
-                                             background="#220660", command=self.create_window_delete_risk)
+                                             background="#220660", command=controller.create_window_delete_risk)
+        self.button_restart_tax = tk.Button(self.ventana_user_register_buttons_frame, image=self.restart_taxonomy,
+                                            borderwidth=0,
+                                            background="#220660", command=controller.restart_my_tax)
 
         self.button_back = tk.Button(self.ventana_user_register_buttons_frame, image=self.menu, borderwidth=0,
                                      background="#220660", command=self.back_my_proyect_window_log_out)
 
         self.button_see_taxonomy.grid(row=2, column=2)
         self.button_delete_risk.grid(row=3,column=2)
-        self.button_back.grid(row=4, column=2)
+        self.button_restart_tax.grid(row=4,column=2)
+        self.button_back.grid(row=5, column=2)
         self.labelbutton = tk.Label(self.ventana_user_register_buttons_frame,
                                         text="                                                                                              ",
                                         background="#220660")
@@ -574,7 +580,10 @@ class UI:
 
         self.ventana_my_project.mainloop()
 
-    def create_window_delete_risk(self,username=""):
+
+    def create_window_delete_risk(self,controller, username="", Taxonomy=None):
+        if Taxonomy is None:
+            Taxonomy = []
         self.ventana_my_project.withdraw()
         self.ventana_delete_risk = tk.Toplevel()
         self.ventana_delete_risk.iconbitmap("imagenes/logo.ico")
@@ -615,15 +624,39 @@ class UI:
                                                     background="#220660")
         self.ventana_user_register_title.grid(row=0, column=1)
 
-        self.label_title_delete_tax = tk.Label(self.ventana_user_register_buttons_frame,text=" Elige el riesgo que quieres eliminar de tu taxonomia : ", font=("Candara",24),
+        self.label_title_delete_tax = tk.Label(self.ventana_user_register_buttons_frame,text=" Elige el riesgo que quieres eliminar de tu taxonomia : \n", font=("Candara",24),
                                                 fg="white",
                                                  background="#220660")
+        self.taxonomy = tk.StringVar()
+        self.taxonomy.set(Taxonomy[0])
+        self.option_risk_menu = tk.OptionMenu(self.ventana_user_register_buttons_frame,self.taxonomy,*Taxonomy)
+        self.option_risk_menu.config(font=("Candara",24),fg="white",background="#220660",highlightbackground="#220660",highlightcolor="white")
+
+        self.option_risk_menu.grid(row=3,column=2)
+
+        self.button_delete_my_risk = tk.Button(self.ventana_user_register_buttons_frame, image=self.delete_risk, borderwidth=0,
+                                     background="#220660", command=controller.delete_my_risk)
+        self.button_delete_my_risk.grid(row=4,column=2)
+
 
         self.button_back = tk.Button(self.ventana_user_register_buttons_frame, image=self.menu, borderwidth=0,
-                                         background="#220660", command="")
+                                         background="#220660", command=self.volver_my_project)
 
         self.label_title_delete_tax.grid(row=2, column=2)
-        self.button_back.grid(row=4, column=2)
+        self.button_back.grid(row=5, column=2)
 
         self.ventana_my_project.mainloop()
+
+    def volver_my_project(self):
+            self.ventana_delete_risk.destroy()
+            self.ventana_my_project.iconify()
+            self.ventana_my_project.state("zoomed")
+    def get_info_delete_risk(self):
+        info = self.taxonomy.get()
+        return info
+    def question_restart_taxonomy(self):
+        respuesta = tk.messagebox.askquestion("Restablecer Taxonomía","¿Estas seguro que quieres reiniciar la taxonomia?")
+        return respuesta
+
+
 

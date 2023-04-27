@@ -2,11 +2,11 @@ import tkinter.messagebox
 import webbrowser
 
 from UItkinter import UI
-from modelo import Program
+from modelo import *
 import tkinter as tk
 
 class Controller:
-    def __init__(self,vista:UI,modelo:Program):
+    def __init__(self,vista:UI, modelo : Program):
         self.vista: UI = vista
         self.modelo: Program = modelo
         self.info_temporal =[]
@@ -91,6 +91,20 @@ class Controller:
         self.vista.create_window_my_project(self, nombre)
     def open_taxonomy(self):
         webbrowser.open('https://drive.google.com/file/d/1EIllGodINQhz8BxR7LjMzEEdcJP0T8CN/view?usp=sharing')
+    def create_window_delete_risk(self):
+        self.vista.create_window_delete_risk(self,self.modelo.isLogIn.username,list(self.modelo.isLogIn.project.myTaxonomy.risks.keys()))
+
+    def delete_my_risk(self):
+        risk = str(self.vista.get_info_delete_risk())
+        self.modelo.isLogIn.project.eliminar_riesgo(risk)
+        self.vista.volver_my_project()
+    def restart_my_tax(self):
+        if self.vista.question_restart_taxonomy() == "yes":
+            self.modelo.isLogIn.project.myTaxonomy = Taxonomy()
+            tk.messagebox.showinfo("No ocurrio ningún problema","Se ha restablecido tu taxonomía satisfactoriamente")
+
+
+
 
 
 

@@ -1,6 +1,7 @@
 import datetime
 class User:
     def __init__(self, username: str, name: str, password: str, mail: str):
+
         self.username = username
         self.name = name
         self.password = password
@@ -8,11 +9,12 @@ class User:
         self.mail = mail
         self.project = Project()
 
+
 class Project:
 
     def  __init__(self):
-        self.myTaxonomy: Taxonomy= Taxonomy()
-    def eliminar_riesgo(self,nombreRiesgo : str):
+        self.myTaxonomy: Taxonomy = Taxonomy()
+    def eliminar_riesgo(self,nombreRiesgo  :  str):
         self.myTaxonomy.risks.pop(nombreRiesgo)
     def agregar_riesgo(self,nombreRiesgo : str):
         for riesgo in self.myTaxonomy.risks.keys():
@@ -24,18 +26,18 @@ class Project:
 
 class Taxonomy:
     def __init__(self):
-        self.risks = {"requerimientos":"Tiene requerimientos bien definidos.",
-                "diseño": "La traducción de los requerimientos al diseño del software es sencilla.",
-                "pruebasUnitarias": "El software cuenta con pruebas unitarias.",
-                "especialidadesIngenieria": "El software es seguro, fiable y se encuentra protegido.",
-                "recursos": "Las condiciones de tiempos, personal y fechas  han sido cumplidas",
-                "contrato": "Se estan cumpliendo los terminos y condiciones firmados en el contrato",
-                "intermediarios": "No hay ningún tipo de problema con los intermediarios del proyecto",
-                "proceso":"El proceso de desarrollo,desde la planeación hasta la documentación esta siendo bien implementado",
-                "sistema": "Tienen todas las herramientas necesarias para desarrollar el proyecto",
-                "presupuesto": "Poseen de el presupuesto necesario para el proyecto",
-                "tiempos": "Hay cumplimiento de avance en las fechas estipuladas por el equipo de desarrollo",
-                "cooperacion": "Hay cooperación y buena actitud en el equipo de trabajo",
+        self.risks = {"Requerimientos":"Tiene requerimientos bien definidos.",
+                "Diseño": "La traducción de los requerimientos al diseño del software es sencilla.",
+                "Pruebas unitarias": "El software cuenta con pruebas unitarias.",
+                "Especialidades ingenieria": "El software es seguro, fiable y se encuentra protegido.",
+                "Recursos": "Las condiciones de tiempos, personal y fechas  han sido cumplidas",
+                "Contrato": "Se estan cumpliendo los terminos y condiciones firmados en el contrato",
+                "Intermediarios": "No hay ningún tipo de problema con los intermediarios del proyecto",
+                "Proceso":"El proceso de desarrollo,desde la planeación hasta la documentación esta siendo bien implementado",
+                "Sistema": "Tienen todas las herramientas necesarias para desarrollar el proyecto",
+                "Presupuesto": "Poseen de el presupuesto necesario para el proyecto",
+                "Tiempos": "Hay cumplimiento de avance en las fechas estipuladas por el equipo de desarrollo",
+                "Cooperacion": "Hay cooperación y buena actitud en el equipo de trabajo",
                 }
 
 
