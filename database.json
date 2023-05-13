@@ -1,0 +1,96 @@
+{
+    "Usuarios": [
+        {
+            "username": "prueba",
+            "name": "prueba",
+            "password": "prueba",
+            "mail": "prueba",
+            "taxonomia": [
+                "Requerimientos",
+                "Pruebas unitarias",
+                "Especialidades ingenieria",
+                "Recursos",
+                "Contrato",
+                "Intermediarios",
+                "Proceso",
+                "Sistema",
+                "Presupuesto",
+                "Tiempos",
+                "Cooperacion"
+            ]
+        },
+        {
+            "username": "Jevo2304",
+            "name": "Juan Esteban",
+            "password": "Tizon123",
+            "mail": "juanes2304@gmail.com",
+            "taxonomia": [
+                "Requerimientos",
+                "Design",
+                "Pruebas unitarias",
+                "Especialidades ingenieria",
+                "Recursos",
+                "Contrato",
+                "Intermediarios",
+                "Proceso",
+                "Sistema",
+                "Tiempos",
+                "Cooperacion"
+            ]
+        },
+        {
+            "username": "Rafo05",
+            "name": "Rafael Arrieta",
+            "password": "1234",
+            "mail": "rafodelmal@gmail.com",
+            "taxonomia": [
+                "Requerimientos",
+                "Especialidades ingenieria",
+                "Intermediarios",
+                "Proceso",
+                "Sistema",
+                "Presupuesto",
+                "Tiempos",
+                "Cooperacion"
+            ]
+        },
+        {
+            "username": "Isa2424",
+            "name": "Isabela",
+            "password": "gato1212",
+            "mail": "isabela@gmail.com",
+            "taxonomia": [
+                "Requerimientos",
+                "Design",
+                "Pruebas unitarias",
+                "Especialidades ingenieria",
+                "Recursos",
+                "Contrato",
+                "Intermediarios",
+                "Proceso",
+                "Sistema",
+                "Presupuesto",
+                "Tiempos"
+            ]
+        },
+        {
+            "username": "dani123",
+            "name": "Daniel ",
+            "password": "1234",
+            "mail": "d@gmail.com",
+            "taxonomia": [
+                "Design",
+                "Pruebas unitarias",
+                "Especialidades ingenieria",
+                "Recursos",
+                "Contrato",
+                "Intermediarios",
+                "Proceso",
+                "Sistema",
+                "Presupuesto",
+                "Tiempos",
+                "Cooperacion"
+            ]
+        }
+    ]
+}

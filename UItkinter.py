@@ -124,6 +124,36 @@ class UI:
                 raise Exception("Las contraseña no pueden contener espacios")
             else:
                 return password
+    def desplegar_ventana_principal_window_register(self):
+        self.ventana_user_register.destroy()
+        self.principal_window.ventana.iconify()
+        self.principal_window.ventana.state("zoomed")
+
+    def desplegar_ventana_principal_ventana_log_out(self):
+        self.ventana_log_out.destroy()
+        self.principal_window.ventana.iconify()
+        self.principal_window.ventana.state("zoomed")
+    def desplegar_ventana_principal_change_password(self):
+        self.ventana_change_password.destroy()
+        self.principal_window.ventana.iconify()
+        self.principal_window.ventana.state("zoomed")
+
+    def desplegar_ventana_principal_delete_account(self):
+        self.ventana_delete_account.destroy()
+        self.principal_window.ventana.iconify()
+        self.principal_window.ventana.state("zoomed")
+
+    def desplegar_ventana_principal_create_window_my_project(self):
+        self.ventana_my_project.destroy()
+        self.principal_window.ventana.iconify()
+        self.principal_window.ventana.state("zoomed")
+
+    def desplegar_ventana_principal_create_window_delete_risk(self):
+        self.ventana_delete_risk.destroy()
+        self.principal_window.ventana.iconify()
+        self.principal_window.ventana.state("zoomed")
+
+
 
     # CREACION DE VENTANAS
     def create_principal_window(self, controller, username=""):
@@ -180,6 +210,7 @@ class UI:
     def create_window_register(self, controller):
         self.principal_window.ventana.withdraw()
         self.ventana_user_register = tk.Toplevel()
+        self.ventana_user_register.protocol("WM_DELETE_WINDOW",self.desplegar_ventana_principal_window_register)
         self.ventana_user_register.iconbitmap("imagenes/logo.ico")
         self.ventana_user_register.geometry("1080x900")
         self.ventana_user_register.resizable(False, False)
@@ -268,6 +299,7 @@ class UI:
     def create_window_order(self, controller):
         self.principal_window.ventana.withdraw()
         self.ventana_user_register = tk.Toplevel()
+        self.ventana_user_register.protocol("WM_DELETE_WINDOW", self.desplegar_ventana_principal_window_register)
         self.ventana_user_register.iconbitmap("imagenes/logo.ico")
         self.ventana_user_register.geometry("1080x900")
         self.ventana_user_register.resizable(False, False)
@@ -333,6 +365,7 @@ class UI:
     def create_window_log_out(self, controller, username=""):
         self.principal_window.ventana.withdraw()
         self.ventana_log_out = tk.Toplevel()
+        self.ventana_log_out.protocol("WM_DELETE_WINDOW",self.desplegar_ventana_principal_ventana_log_out)
         self.ventana_log_out.iconbitmap("imagenes/logo.ico")
         self.ventana_log_out.geometry("1080x900")
         self.ventana_log_out.resizable(False, False)
@@ -396,6 +429,7 @@ class UI:
     def create_window_change_password(self, controller, username=""):
         self.ventana_log_out.withdraw()
         self.ventana_change_password = tk.Toplevel()
+        self.ventana_change_password.protocol("WM_DELETE_WINDOW",self.desplegar_ventana_principal_change_password)
         self.ventana_change_password.iconbitmap("imagenes/logo.ico")
         self.ventana_change_password.geometry("1080x900")
         self.ventana_change_password.resizable(False, False)
@@ -461,6 +495,7 @@ class UI:
     def create_window_delete_account(self, controller, username=""):
         self.ventana_log_out.withdraw()
         self.ventana_delete_account = tk.Toplevel()
+        self.ventana_delete_account.protocol("WM_DELETE_WINDOW",self.desplegar_ventana_principal_delete_account)
         self.ventana_delete_account.iconbitmap("imagenes/logo.ico")
         self.ventana_delete_account.geometry("1080x900")
         self.ventana_delete_account.resizable(False, False)
@@ -518,6 +553,7 @@ class UI:
     def create_window_my_project(self, controller, username=""):
         self.principal_window.ventana.withdraw()
         self.ventana_my_project = tk.Toplevel()
+        self.ventana_my_project.protocol("WM_DELETE_WINDOW",self.desplegar_ventana_principal_create_window_my_project)
         self.ventana_my_project.iconbitmap("imagenes/logo.ico")
         self.ventana_my_project.geometry("1080x900")
         self.ventana_my_project.resizable(False, False)
@@ -586,6 +622,7 @@ class UI:
             Taxonomy = []
         self.ventana_my_project.withdraw()
         self.ventana_delete_risk = tk.Toplevel()
+        self.ventana_delete_risk.protocol("WM_DELETE_WINDOW",self.desplegar_ventana_principal_create_window_delete_risk)
         self.ventana_delete_risk.iconbitmap("imagenes/logo.ico")
         self.ventana_delete_risk.geometry("1080x900")
         self.ventana_delete_risk.resizable(False, False)
