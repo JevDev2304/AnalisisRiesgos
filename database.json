@@ -1,12 +1,13 @@
 {
     "Usuarios": [
         {
-            "username": "prueba",
-            "name": "prueba",
-            "password": "prueba",
-            "mail": "prueba",
+            "username": "Jevo2304",
+            "name": "Juan Esteban",
+            "password": "Tizon123",
+            "mail": "juanesplatzi2304@gmail.com",
             "taxonomia": [
                 "Requerimientos",
+                "Design",
                 "Pruebas unitarias",
                 "Especialidades ingenieria",
                 "Recursos",
@@ -14,16 +15,15 @@
                 "Intermediarios",
                 "Proceso",
                 "Sistema",
-                "Presupuesto",
                 "Tiempos",
                 "Cooperacion"
             ]
         },
         {
-            "username": "Jevo2304",
-            "name": "Juan Esteban",
-            "password": "Tizon123",
-            "mail": "juanes2304@gmail.com",
+            "username": "NoBorrar1125142023",
+            "name": "NoBorrar1125142023",
+            "password": "NoBorrar1125142023",
+            "mail": "NoBorrar1125142023",
             "taxonomia": [
                 "Requerimientos",
                 "Design",
@@ -79,6 +79,46 @@
             "password": "1234",
             "mail": "d@gmail.com",
             "taxonomia": [
+                "Design",
+                "Pruebas unitarias",
+                "Especialidades ingenieria",
+                "Recursos",
+                "Contrato",
+                "Intermediarios",
+                "Sistema",
+                "Presupuesto",
+                "Tiempos",
+                "Cooperacion",
+                "Proceso"
+            ]
+        },
+        {
+            "username": "nose12",
+            "name": "Daniel",
+            "password": "unmanesbatman523",
+            "mail": "batmanesunman@gmail.com",
+            "taxonomia": [
+                "Requerimientos",
+                "Design",
+                "Pruebas unitarias",
+                "Especialidades ingenieria",
+                "Recursos",
+                "Intermediarios",
+                "Proceso",
+                "Sistema",
+                "Tiempos",
+                "Cooperacion",
+                "Contrato",
+                "Presupuesto"
+            ]
+        },
+        {
+            "username": "cris1212",
+            "name": "Cristian Franco",
+            "password": "Tomy123",
+            "mail": "cristian@gmail.com",
+            "taxonomia": [
+                "Requerimientos",
                 "Design",
                 "Pruebas unitarias",
                 "Especialidades ingenieria",

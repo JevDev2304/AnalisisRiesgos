@@ -27,6 +27,8 @@ class Controller:
 
     def create_window_order(self):
         self.vista.create_window_order(self)
+    def create_window_recover_password(self):
+        self.vista.create_window_recover_password(self)
 
 
 
@@ -35,7 +37,6 @@ class Controller:
         try:
             id =self.vista.obtener_info_order()[0]
             password= self.vista.obtener_info_order()[1]
-            print(id, password, "ESTO ES LO QUE DA LA VISTA ")
             self.modelo.log_in(id, password)
         except TypeError:
             tk.messagebox.showerror("Llena todos los campos de la encuesta", "Ninguno puede quedar vacio")
@@ -44,6 +45,19 @@ class Controller:
         else:
             self.vista.ventana_user_register.destroy()
             self.vista.create_window_log_out(self,id)
+    def recover_password(self):
+        try:
+            id = self.vista.obtener_info_recover_password()[0]
+            mail = self.vista.obtener_info_recover_password()[1]
+            self.modelo.recover_password(mail,id)
+        except TypeError:
+            tk.messagebox.showerror("Llena todos los campos de la encuesta", "Ninguno puede quedar vacio")
+        except Exception as error:
+            tk.messagebox.showerror(str(error),str(error))
+        else:
+            tk.messagebox.showinfo("Se hizo la validación exitosamente", "Te hemos enviado a tu correo personal la información necesaria para recuperar tu contraseña.")
+            self.vista.volver_menu()
+
     def log_out(self):
         try:
             self.modelo.log_out()
@@ -93,11 +107,19 @@ class Controller:
         webbrowser.open('https://drive.google.com/file/d/1EIllGodINQhz8BxR7LjMzEEdcJP0T8CN/view?usp=sharing')
     def create_window_delete_risk(self):
         self.vista.create_window_delete_risk(self,self.modelo.isLogIn.username,list(self.modelo.isLogIn.project.myTaxonomy.risks.keys()))
-
+    def create_window_add_risk(self):
+        if self.modelo.isLogIn.project.obtenerriesgos_faltantes() != []:
+            self.vista.create_window_add_risk(self,self.modelo.isLogIn.username,self.modelo.isLogIn.project.obtenerriesgos_faltantes())
+        else:
+            self.vista.mostrar_ventana_ya_tienes_todos_los_riesgos()
     def delete_my_risk(self):
         risk = str(self.vista.get_info_delete_risk())
         self.modelo.isLogIn.project.eliminar_riesgo(risk)
         self.vista.volver_my_project()
+    def add_my_risk(self):
+        risk = str(self.vista.get_info_add_risk())
+        self.modelo.isLogIn.project.agregar_riesgo(risk)
+        self.vista.volver_my_project_add_risk()
     def restart_my_tax(self):
         if self.vista.question_restart_taxonomy() == "yes":
             self.modelo.isLogIn.project.myTaxonomy = Taxonomy()

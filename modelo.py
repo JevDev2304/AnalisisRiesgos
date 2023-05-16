@@ -1,5 +1,8 @@
 import datetime
 import json
+
+import send_email
+from send_email import *
 class User:
     project = None
     mail = None
@@ -23,11 +26,24 @@ class Project:
     def eliminar_riesgo(self,nombreRiesgo  :  str):
         self.myTaxonomy.risks.pop(nombreRiesgo)
     def agregar_riesgo(self,nombreRiesgo : str):
-        for riesgo in self.myTaxonomy.risks.keys():
+        for riesgo in list(self.myTaxonomy.risks.keys()):
             if riesgo == nombreRiesgo:
                 raise Exception("El riesgo ya esta agregado en la taxonomia")
         else:
-            self.myTaxonomy.risks[nombreRiesgo]=Taxonomy().risks[nombreRiesgo]
+            self.myTaxonomy.risks[nombreRiesgo] = Taxonomy().risks[nombreRiesgo]
+    def obtenerriesgos_faltantes(self):
+        listaDeMisRiesgos = list(self.myTaxonomy.risks.keys())
+        listaTodosLosRiesgos = list(Taxonomy().risks.keys())
+        listaRiesgosFaltantes = []
+        if len(listaDeMisRiesgos) == len(listaTodosLosRiesgos):
+            return []
+        for riesgo in listaTodosLosRiesgos:
+            if riesgo not in listaDeMisRiesgos:
+                listaRiesgosFaltantes.append(riesgo)
+        return listaRiesgosFaltantes
+
+
+
 
 
 class Taxonomy:
@@ -62,7 +78,6 @@ class Program:
         json_document = open("database.json",mode="r")
         json_str = json_document.read()
         dictionary = dict(json.loads(json_str))
-        print(dictionary)
         return dictionary
     def load_json(self,dictionary_json):
         listaUsuarios = dictionary_json["Usuarios"]
@@ -93,7 +108,6 @@ class Program:
                 raise Exception("ya existe un usuario con el nombre de usuario ingresado, cambia tu nombre de usuario para poder registrarte")
         else:
          newUser = User(username, name, password, mail)
-         print(newUser.username + " " + password)
          self.user_list.append(newUser)
 
     def log_in(self,username,password):
@@ -116,6 +130,22 @@ class Program:
             raise Exception("La contraseña antigua no esta bien ingresada,no se puede cambiar la contraseña sin haber hecho la validación.")
         else:
             user.password = new_password
+
+    def recover_password(self,mail, username):
+        asunto = f"Recuperación contraseña:"
+        lista_correos = []
+        password = ""
+        for usuario in self.user_list:
+            if (usuario.mail == mail) and (usuario.username == username):
+                password = usuario.password
+            lista_correos.append(usuario.mail)
+        if mail not in lista_correos:
+            raise Exception("Correo no existe")
+        message = f"Este es un correo automático para recuperar su usuario o contraseña.\nCorreo : {mail}\nNombre de usuario : {username}\n Contraseña:  {password} \n Si no pediste recuperación de contraseña no compartas esta información."
+        enviar_correo(mail,asunto,message)
+
+
+
 
     def delete_account(self,username,password):
         usuarioExiste = 0
