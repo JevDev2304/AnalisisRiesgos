@@ -21,6 +21,10 @@ class UI:
         self.big_mail = tk.PhotoImage(file = "imagenes/CorreoGrande.png")
         self.big_username = tk.PhotoImage(file = "imagenes/UsernameGrande.png")
         self.recover_password = tk.PhotoImage(file = "imagenes/RecuperarContrasennia.png")
+        self.new_email = tk.PhotoImage(file="imagenes/NewEmail.png")
+        self.new_username = tk.PhotoImage(file = "imagenes/NuevoNombreUsuario.png")
+        self.change_username = tk.PhotoImage(file = "imagenes/cambiar_usuario.png")
+        self.change_email = tk.PhotoImage(file = "imagenes/cambiarCorreo.png")
 
         self.register_name = tk.PhotoImage(file="imagenes/NombreCompletoAnalisis.png")
         self.register_username = tk.PhotoImage(file="imagenes/NombreUsuarioAnalisis.png")
@@ -68,7 +72,14 @@ class UI:
         self.ventana_change_password.destroy()
         self.ventana_log_out.iconify()
         self.ventana_log_out.state("zoomed")
-
+    def back_create_window_log_out_change_username(self):
+        self.ventana_change_username.destroy()
+        self.ventana_log_out.iconify()
+        self.ventana_log_out.state("zoomed")
+    def back_create_window_log_out_change_mail(self):
+        self.ventana_change_mail.destroy()
+        self.ventana_log_out.iconify()
+        self.ventana_log_out.state("zoomed")
     def back_create_window_log_out_delete_account(self):
         self.ventana_delete_account.destroy()
         self.ventana_log_out.iconify()
@@ -123,6 +134,7 @@ class UI:
             else:
                 return [old_password, new_password]
 
+
     def obtener_info_delete_account(self):
             password = self.entry_old_password.get()
             if " " in password:
@@ -140,6 +152,14 @@ class UI:
         self.principal_window.ventana.state("zoomed")
     def desplegar_ventana_principal_change_password(self):
         self.ventana_change_password.destroy()
+        self.principal_window.ventana.iconify()
+        self.principal_window.ventana.state("zoomed")
+    def desplegar_ventana_principal_change_username(self):
+        self.ventana_change_username.destroy()
+        self.principal_window.ventana.iconify()
+        self.principal_window.ventana.state("zoomed")
+    def desplegar_ventana_principal_change_mail(self):
+        self.ventana_change_mail.destroy()
         self.principal_window.ventana.iconify()
         self.principal_window.ventana.state("zoomed")
 
@@ -471,7 +491,7 @@ class UI:
         self.ventana_user_register_title_frame = tk.Frame(self.ventana_log_out)
         self.ventana_user_register_title_frame.config(background="#220660")
         self.ventana_user_register_frame_empty_1 = tk.Label(self.ventana_user_register_title_frame,
-                                                            text="                                                                                            ",
+                                                            text="                                                                                                                                  ",
                                                             background="#220660")
         self.ventana_user_register_frame_empty_2 = tk.Label(self.ventana_user_register_title_frame,
                                                             text="                                              ",
@@ -485,7 +505,7 @@ class UI:
         self.ventana_user_register_buttons_frame.config(background="#220660", borderwidth=0)
         self.ventana_user_register_buttons_frame.grid(row=1, column=0)
         self.ventana_user_register_frame_empty_3 = tk.Label(self.ventana_user_register_buttons_frame,
-                                                            text="                           ", background="#220660")
+                                                            text="                                                                              ", background="#220660")
         self.ventana_user_register_frame_empty_4 = tk.Label(self.ventana_user_register_buttons_frame,
                                                             text="                                                       ",
                                                             background="#220660")
@@ -502,21 +522,25 @@ class UI:
         self.button_change_password = tk.Button(self.ventana_user_register_buttons_frame, image=self.change_password,
                                                 borderwidth=0,
                                                 background="#220660", command=controller.change_password)
+        self.button_change_username = tk.Button(self.ventana_user_register_buttons_frame, image=self.change_username,
+                                                borderwidth=0,
+                                                background="#220660", command=controller.change_username)
+        self.button_change_mail = tk.Button(self.ventana_user_register_buttons_frame, image=self.change_email,
+                                                borderwidth=0,
+                                                background="#220660", command=controller.change_mail)
         self.button_my_project = tk.Button(self.ventana_user_register_buttons_frame, image=self.my_project,
                                                 borderwidth=0,
                                                 background="#220660", command=controller.my_project)
         self.button_delete_account = tk.Button(self.ventana_user_register_buttons_frame, image=self.delete_account,
                                                borderwidth=0,
                                                background="#220660", command=controller.delete_account)
-        self.button_delete_account.grid(row=5, column=2)
-        self.button_change_password.grid(row=3, column=2)
-        self.button_my_project.grid(row=2,column=2)
+        self.button_my_project.grid(row=2, column=2)
+        self.button_change_password.grid(row=2, column=3)
+        self.button_change_username.grid(row=3, column=2)
+        self.button_change_mail.grid(row=3,column=3)
         self.button_final_register.grid(row=4, column=2)
-        self.button_delete_account.grid(row=5, column=2)
-        self.labelbutton = tk.Label(self.ventana_user_register_buttons_frame,
-                                    text="                                                                                              ",
-                                    background="#220660")
-        self.labelbutton.grid(row=4, column=1)
+        self.button_delete_account.grid(row=4, column=3)
+
 
         self.ventana_log_out.mainloop()
 
@@ -585,6 +609,159 @@ class UI:
         self.button_final_order.grid(row=4, column=2)
 
         self.ventana_change_password.mainloop()
+    def create_window_change_username(self, controller, username=""):
+        self.ventana_log_out.withdraw()
+        self.ventana_change_username = tk.Toplevel()
+        self.ventana_change_username.protocol("WM_DELETE_WINDOW",self.desplegar_ventana_principal_change_username)
+        self.ventana_change_username.iconbitmap("imagenes/logo.ico")
+        self.ventana_change_username.geometry("1080x900")
+        self.ventana_change_username.resizable(False, False)
+        self.ventana_change_username.title("Usuario: " + username + " -> Cambio de usuario")
+        self.ventana_change_username.config(background="#220660")
+        self.ventana_change_username.maxsize(1080, 900)
+        self.ventana_change_username.state("zoomed")
+
+        self.ventana_user_register_title_frame = tk.Frame(self.ventana_change_username)
+        self.ventana_user_register_title_frame.config(background="#220660")
+        self.ventana_user_register_frame_empty_1 = tk.Label(self.ventana_user_register_title_frame,
+                                                            text="                                  ",
+                                                            background="#220660")
+        self.ventana_user_register_frame_empty_2 = tk.Label(self.ventana_user_register_title_frame,
+                                                            text="                                              ",
+                                                            background="#220660")
+
+        self.ventana_user_register_title_frame.grid(row=0, column=0)
+        self.ventana_user_register_frame_empty_1.grid(row=0, column=0)
+        self.ventana_user_register_frame_empty_2.grid(row=0, column=2)
+
+        self.ventana_user_register_buttons_frame = tk.Frame(self.ventana_change_username)
+        self.ventana_user_register_buttons_frame.config(background="#220660", borderwidth=0)
+        self.ventana_user_register_buttons_frame.grid(row=1, column=0)
+        self.ventana_user_register_frame_empty_3 = tk.Label(self.ventana_user_register_buttons_frame,
+                                                            text="                           ", background="#220660")
+        self.ventana_user_register_frame_empty_4 = tk.Label(self.ventana_user_register_buttons_frame,
+                                                            text="                                                       ",
+                                                            background="#220660")
+        self.ventana_user_register_frame_empty_3.grid(row=0, column=0)
+        self.ventana_user_register_frame_empty_4.grid(row=0, column=3)
+
+        self.ventana_user_register_title = tk.Label(self.ventana_user_register_title_frame)
+        self.ventana_user_register_title.config(font=("Candara", 48), fg="white", image=self.logo, background="#220660")
+        self.ventana_user_register_title.grid(row=0, column=1)
+
+        self.label_new_username = tk.Label(self.ventana_user_register_buttons_frame, image=self.new_username, borderwidth=0,
+                                 background="#220660")
+        self.label_new_username.grid(row=0, column=1)
+        self.entry_new_username = tk.Entry(self.ventana_user_register_buttons_frame, font=("Calibri bold", 25),
+                                           fg="#220660", background="white", justify="center", bd=4, width=35,
+                                           borderwidth=0)
+        self.entry_new_username.grid(row=0, column=2)
+
+        self.label_password = tk.Label(self.ventana_user_register_buttons_frame, image=self.register_password, borderwidth=0,
+                                       background="#220660")
+        self.label_password.grid(row=1, column=1)
+        self.entry_password = tk.Entry(self.ventana_user_register_buttons_frame, font=("Calibri bold", 25),
+                                       fg="#220660",
+                                       background="white", justify="center", bd=4, width=35, borderwidth=0,show="*" )
+        self.entry_password.grid(row=1, column=2)
+
+        self.button_back = tk.Button(self.ventana_user_register_buttons_frame, image=self.menu, borderwidth=0,
+                                     background="#220660", command=self.back_create_window_log_out_change_username)
+        self.button_final_order = tk.Button(self.ventana_user_register_buttons_frame, image=self.change_username,
+                                            borderwidth=0,
+                                            background="#220660", command=controller.getinfochangeusername)
+        self.button_back.grid(row=4, column=1)
+        self.button_final_order.grid(row=4, column=2)
+
+        self.ventana_change_username.mainloop()
+    def create_window_change_mail(self, controller, username=""):
+        self.ventana_log_out.withdraw()
+        self.ventana_change_mail = tk.Toplevel()
+        self.ventana_change_mail.protocol("WM_DELETE_WINDOW",self.desplegar_ventana_principal_change_mail)
+        self.ventana_change_mail.iconbitmap("imagenes/logo.ico")
+        self.ventana_change_mail.geometry("1080x900")
+        self.ventana_change_mail.resizable(False, False)
+        self.ventana_change_mail.title("Usuario: " + username + " -> Cambio de correo electrónico")
+        self.ventana_change_mail.config(background="#220660")
+        self.ventana_change_mail.maxsize(1080, 900)
+        self.ventana_change_mail.state("zoomed")
+
+        self.ventana_user_register_title_frame = tk.Frame(self.ventana_change_mail)
+        self.ventana_user_register_title_frame.config(background="#220660")
+        self.ventana_user_register_frame_empty_1 = tk.Label(self.ventana_user_register_title_frame,
+                                                            text="                                  ",
+                                                            background="#220660")
+        self.ventana_user_register_frame_empty_2 = tk.Label(self.ventana_user_register_title_frame,
+                                                            text="                                              ",
+                                                            background="#220660")
+
+        self.ventana_user_register_title_frame.grid(row=0, column=0)
+        self.ventana_user_register_frame_empty_1.grid(row=0, column=0)
+        self.ventana_user_register_frame_empty_2.grid(row=0, column=2)
+
+        self.ventana_user_register_buttons_frame = tk.Frame(self.ventana_change_mail)
+        self.ventana_user_register_buttons_frame.config(background="#220660", borderwidth=0)
+        self.ventana_user_register_buttons_frame.grid(row=1, column=0)
+        self.ventana_user_register_frame_empty_3 = tk.Label(self.ventana_user_register_buttons_frame,
+                                                            text="                           ", background="#220660")
+        self.ventana_user_register_frame_empty_4 = tk.Label(self.ventana_user_register_buttons_frame,
+                                                            text="                                                       ",
+                                                            background="#220660")
+        self.ventana_user_register_frame_empty_3.grid(row=0, column=0)
+        self.ventana_user_register_frame_empty_4.grid(row=0, column=3)
+
+        self.ventana_user_register_title = tk.Label(self.ventana_user_register_title_frame)
+        self.ventana_user_register_title.config(font=("Candara", 48), fg="white", image=self.logo, background="#220660")
+        self.ventana_user_register_title.grid(row=0, column=1)
+
+        self.label_new_mail = tk.Label(self.ventana_user_register_buttons_frame, image=self.new_email, borderwidth=0,
+                                 background="#220660")
+        self.label_new_mail.grid(row=0, column=1)
+        self.entry_new_mail = tk.Entry(self.ventana_user_register_buttons_frame, font=("Calibri bold", 25),
+                                           fg="#220660", background="white", justify="center", bd=4, width=35,
+                                           borderwidth=0)
+        self.entry_new_mail.grid(row=0, column=2)
+
+        self.label_password = tk.Label(self.ventana_user_register_buttons_frame, image=self.register_password, borderwidth=0,
+                                       background="#220660")
+        self.label_password.grid(row=1, column=1)
+        self.entry_password = tk.Entry(self.ventana_user_register_buttons_frame, font=("Calibri bold", 25),
+                                       fg="#220660",
+                                       background="white", justify="center", bd=4, width=35, borderwidth=0,show="*" )
+        self.entry_password.grid(row=1, column=2)
+
+        self.button_back = tk.Button(self.ventana_user_register_buttons_frame, image=self.menu, borderwidth=0,
+                                     background="#220660", command=self.back_create_window_log_out_change_mail)
+        self.button_final_order = tk.Button(self.ventana_user_register_buttons_frame, image=self.change_email,
+                                            borderwidth=0,
+                                            background="#220660", command=controller.getinfochangemail)
+        self.button_back.grid(row=4, column=1)
+        self.button_final_order.grid(row=4, column=2)
+
+        self.ventana_change_mail.mainloop()
+
+    def obtener_info_change_username(self):
+        new_username = self.entry_new_username.get()
+        password = self.entry_password.get()
+        if " " in new_username:
+            raise Exception("El nombre de usuario no debe  contener espacios")
+        elif " " in password:
+            raise Exception("Las contraseñas  no pueden contener espacios")
+        else:
+            return [new_username, password]
+    def obtener_info_change_mail(self):
+        new_email = self.entry_new_mail.get()
+        password = self.entry_password.get()
+        if " " in new_email:
+            raise Exception("El correo no contiene espacios")
+        if "@" not in new_email:
+            raise Exception("El nuevo correo debe de tener @")
+        elif " " in password:
+            raise Exception("Las contraseñas  no pueden contener espacios")
+        else:
+            return [new_email, password]
+
+
 
     def create_window_delete_account(self, controller, username=""):
         self.ventana_log_out.withdraw()

@@ -1,12 +1,11 @@
 {
     "Usuarios": [
         {
-            "username": "Jevo2304",
+            "username": "jev2304",
             "name": "Juan Esteban",
-            "password": "Tizon123",
-            "mail": "juanesplatzi2304@gmail.com",
+            "password": "123",
+            "mail": "juanestebanvaldesospina@gmail.com",
             "taxonomia": [
-                "Requerimientos",
                 "Design",
                 "Pruebas unitarias",
                 "Especialidades ingenieria",
@@ -16,7 +15,8 @@
                 "Proceso",
                 "Sistema",
                 "Tiempos",
-                "Cooperacion"
+                "Cooperacion",
+                "Presupuesto"
             ]
         },
         {
@@ -117,6 +117,105 @@
             "name": "Cristian Franco",
             "password": "Tomy123",
             "mail": "cristian@gmail.com",
+            "taxonomia": [
+                "Requerimientos",
+                "Design",
+                "Pruebas unitarias",
+                "Especialidades ingenieria",
+                "Recursos",
+                "Contrato",
+                "Intermediarios",
+                "Proceso",
+                "Sistema",
+                "Presupuesto",
+                "Tiempos",
+                "Cooperacion"
+            ]
+        },
+        {
+            "username": "cristian",
+            "name": "Cristian Franco",
+            "password": "cristian",
+            "mail": "cristianfrancoraigosa@gmail.com",
+            "taxonomia": [
+                "Requerimientos",
+                "Design",
+                "Pruebas unitarias",
+                "Especialidades ingenieria",
+                "Recursos",
+                "Intermediarios",
+                "Proceso",
+                "Sistema",
+                "Presupuesto",
+                "Tiempos",
+                "Cooperacion",
+                "Contrato"
+            ]
+        },
+        {
+            "username": "isa123",
+            "name": "isabella",
+            "password": "123",
+            "mail": "belacaste3@gmail.com",
+            "taxonomia": [
+                "Requerimientos",
+                "Design",
+                "Pruebas unitarias",
+                "Especialidades ingenieria",
+                "Recursos",
+                "Contrato",
+                "Intermediarios",
+                "Proceso",
+                "Sistema",
+                "Presupuesto",
+                "Tiempos",
+                "Cooperacion"
+            ]
+        },
+        {
+            "username": "SantyXXX",
+            "name": "Santiago",
+            "password": "123456",
+            "mail": "parausarcolabb@gmail.com",
+            "taxonomia": [
+                "Requerimientos",
+                "Design",
+                "Pruebas unitarias",
+                "Especialidades ingenieria",
+                "Recursos",
+                "Contrato",
+                "Intermediarios",
+                "Proceso",
+                "Sistema",
+                "Presupuesto",
+                "Tiempos",
+                "Cooperacion"
+            ]
+        },
+        {
+            "username": "paome",
+            "name": "Paula Meneses",
+            "password": "paome",
+            "mail": "albertnikolafranco@gmail.com",
+            "taxonomia": [
+                "Design",
+                "Pruebas unitarias",
+                "Recursos",
+                "Contrato",
+                "Intermediarios",
+                "Proceso",
+                "Sistema",
+                "Presupuesto",
+                "Tiempos",
+                "Cooperacion",
+                "Requerimientos"
+            ]
+        },
+        {
+            "username": "cba",
+            "name": "cba",
+            "password": "cba",
+            "mail": "sebaxcrq@gmail.com",
             "taxonomia": [
                 "Requerimientos",
                 "Design",

@@ -70,11 +70,28 @@ class Controller:
         usuario = self.modelo.isLogIn
         nombre = usuario.username
         self.vista.create_window_change_password(self, nombre)
+    def change_username(self):
+        usuario = self.modelo.isLogIn
+        nombre = usuario.username
+        self.vista.create_window_change_username(self, nombre)
+    def change_mail(self):
+        usuario = self.modelo.isLogIn
+        nombre = usuario.username
+        self.vista.create_window_change_mail(self, nombre)
 
     def delete_account(self):
         usuario = self.modelo.isLogIn
         nombre = usuario.username
         self.vista.create_window_delete_account(self, nombre)
+    def create_window_log_out_post_change_username(self):
+        self.vista.ventana_log_out.destroy()
+        self.vista.ventana_change_username.destroy()
+        self.vista.create_window_log_out(self,self.modelo.isLogIn.username)
+    def create_window_log_out_post_change_mail(self):
+        self.vista.ventana_log_out.destroy()
+        self.vista.ventana_change_mail.destroy()
+        self.vista.create_window_log_out(self,self.modelo.isLogIn.username)
+
     def getinfochangepassword(self):
         try:
             contrasenias=self.vista.obtener_info_change_password()
@@ -85,6 +102,27 @@ class Controller:
             tk.messagebox.showerror(str(error),str(error))
         else:
             self.vista.back_create_window_log_out()
+
+    def getinfochangeusername(self):
+        try:
+            info = self.vista.obtener_info_change_username()
+            self.modelo.change_username(info[0], info[1])
+        except TypeError:
+            tk.messagebox.showerror("Llena todos los campos de la encuesta", "Ninguno puede quedar vacio")
+        except Exception as error:
+            tk.messagebox.showerror(str(error), str(error))
+        else:
+            self.create_window_log_out_post_change_username()
+    def getinfochangemail(self):
+        try:
+            info = self.vista.obtener_info_change_mail()
+            self.modelo.change_mail(info[0], info[1])
+        except TypeError:
+            tk.messagebox.showerror("Llena todos los campos de la encuesta", "Ninguno puede quedar vacio")
+        except Exception as error:
+            tk.messagebox.showerror(str(error), str(error))
+        else:
+            self.create_window_log_out_post_change_mail()
     def getinfodelete_account(self):
         try:
             password=self.vista.obtener_info_delete_account()

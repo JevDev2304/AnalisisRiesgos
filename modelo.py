@@ -130,17 +130,44 @@ class Program:
             raise Exception("La contraseña antigua no esta bien ingresada,no se puede cambiar la contraseña sin haber hecho la validación.")
         else:
             user.password = new_password
+    def change_username(self,username,password):
+        if username == self.isLogIn.username:
+            raise Exception("El usuario es igual al anterior, intentalo nuevamente")
+        if password != self.isLogIn.password:
+            raise Exception("La contraseña antigua no esta bien ingresada,no se puede cambiar el correo sin haber hecho la validación.")
+        username_is_repeat = False
+        for user in self.user_list:
+            if user.username == username:
+                raise Exception("El usuario ya existe, intenta uno nuevo")
+        if username_is_repeat is False:
+            self.isLogIn.username = username
+    def change_mail(self,mail,password):
+        if mail == self.isLogIn.mail:
+            raise Exception("El correo es igual al anterior, intentalo nuevamente")
+        if password != self.isLogIn.password:
+            raise Exception("La contraseña antigua no esta bien ingresada,no se puede cambiar el correo sin haber hecho la validación.")
+        mail_is_repeat = False
+        for user in self.user_list:
+            if user.mail == mail:
+                raise Exception("Este correo ya se encuentra registrado en otra cuenta, intenta  con uno nuevo")
+        if mail_is_repeat is False:
+            self.isLogIn.mail = mail
+
 
     def recover_password(self,mail, username):
         asunto = f"Recuperación contraseña:"
         lista_correos = []
+        lista_usernames =[]
         password = ""
         for usuario in self.user_list:
             if (usuario.mail == mail) and (usuario.username == username):
                 password = usuario.password
             lista_correos.append(usuario.mail)
+            lista_usernames.append(usuario.username)
         if mail not in lista_correos:
             raise Exception("Correo no existe")
+        if username not in lista_usernames:
+            raise Exception ("Usuario no existe")
         message = f"Este es un correo automático para recuperar su usuario o contraseña.\nCorreo : {mail}\nNombre de usuario : {username}\n Contraseña:  {password} \n Si no pediste recuperación de contraseña no compartas esta información."
         enviar_correo(mail,asunto,message)
 
