@@ -141,6 +141,8 @@ class Controller:
         usuario = self.modelo.isLogIn
         nombre = usuario.username
         self.vista.create_window_my_project(self, nombre)
+
+    # RF20 Ver_taxonomia (15)
     def open_taxonomy(self):
         webbrowser.open('https://drive.google.com/file/d/1EIllGodINQhz8BxR7LjMzEEdcJP0T8CN/view?usp=sharing')
     def create_window_delete_risk(self):
@@ -158,6 +160,8 @@ class Controller:
         risk = str(self.vista.get_info_add_risk())
         self.modelo.isLogIn.project.agregar_riesgo(risk)
         self.vista.volver_my_project_add_risk()
+
+    # RF20 Reiniciar_taxonomia (14)
     def restart_my_tax(self):
         if self.vista.question_restart_taxonomy() == "yes":
             self.modelo.isLogIn.project.myTaxonomy = Taxonomy()

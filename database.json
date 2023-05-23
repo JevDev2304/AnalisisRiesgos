@@ -1,13 +1,12 @@
 {
     "Usuarios": [
         {
-            "username": "jev2304",
+            "username": "jev2317",
             "name": "Juan Esteban",
             "password": "123",
-            "mail": "juanestebanvaldesospina@gmail.com",
+            "mail": "juanesplatzi2304@gmail.com",
             "taxonomia": [
                 "Design",
-                "Pruebas unitarias",
                 "Especialidades ingenieria",
                 "Recursos",
                 "Contrato",

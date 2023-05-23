@@ -23,8 +23,13 @@ class Project:
 
     def  __init__(self):
         self.myTaxonomy: Taxonomy = Taxonomy()
+
+    # RF09 Eliminar riesgos
+    # RF07 Mostrar_taxonomia
     def eliminar_riesgo(self,nombreRiesgo  :  str):
         self.myTaxonomy.risks.pop(nombreRiesgo)
+
+    # RF04 agregar_riesgo
     def agregar_riesgo(self,nombreRiesgo : str):
         for riesgo in list(self.myTaxonomy.risks.keys()):
             if riesgo == nombreRiesgo:
@@ -73,7 +78,7 @@ class Program:
         self.user_list = []
         self.isLogIn = None
 
-    # REQUISITOS
+    # RF16 Guardar_información (12)
     def read_json(self):
         json_document = open("database.json",mode="r")
         json_str = json_document.read()
@@ -101,7 +106,7 @@ class Program:
 
 
 
-
+    #RF01 Registrar_Usuario
     def sign_up(self, name, username, mail, password):
         for user in self.user_list:
             if user.username == username:
@@ -110,6 +115,7 @@ class Program:
          newUser = User(username, name, password, mail)
          self.user_list.append(newUser)
 
+    # RF02 Iniciar_sesión
     def log_in(self,username,password):
         for user in self.user_list:
             if (user.username == username) and (user.password == password):
@@ -117,11 +123,14 @@ class Program:
         if self.isLogIn == None:
             raise Exception("Credenciales no validas")
 
+    # RF03 Cerrar_sesion
     def log_out(self):
         if self.isLogIn != None:
             self.isLogIn = None
         elif self.isLogIn == None:
             raise Exception("No hay una sesion abierta")
+
+    # RF13 Cambiar_contraseña (11)
     def change_password(self,old_password,new_password):
         if old_password == new_password:
             raise Exception("La nueva contraseña es igual a la antigua, si deseas cambiarla tiene que ser una nueva")
@@ -130,6 +139,8 @@ class Program:
             raise Exception("La contraseña antigua no esta bien ingresada,no se puede cambiar la contraseña sin haber hecho la validación.")
         else:
             user.password = new_password
+
+    # RF08 Cambiar_nombre_usuario
     def change_username(self,username,password):
         if username == self.isLogIn.username:
             raise Exception("El usuario es igual al anterior, intentalo nuevamente")
@@ -141,6 +152,8 @@ class Program:
                 raise Exception("El usuario ya existe, intenta uno nuevo")
         if username_is_repeat is False:
             self.isLogIn.username = username
+
+    # RF10 Cambiar_correo_electronico
     def change_mail(self,mail,password):
         if mail == self.isLogIn.mail:
             raise Exception("El correo es igual al anterior, intentalo nuevamente")
@@ -153,7 +166,7 @@ class Program:
         if mail_is_repeat is False:
             self.isLogIn.mail = mail
 
-
+    # RF05 Recuperar_contraseña
     def recover_password(self,mail, username):
         asunto = f"Recuperación contraseña:"
         lista_correos = []
@@ -171,9 +184,7 @@ class Program:
         message = f"Este es un correo automático para recuperar su usuario o contraseña.\nCorreo : {mail}\nNombre de usuario : {username}\n Contraseña:  {password} \n Si no pediste recuperación de contraseña no compartas esta información."
         enviar_correo(mail,asunto,message)
 
-
-
-
+    # RF19 Guardar_información (13)
     def delete_account(self,username,password):
         usuarioExiste = 0
         for user in self.user_list:

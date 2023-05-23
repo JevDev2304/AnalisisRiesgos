@@ -1042,6 +1042,8 @@ class UI:
     def get_info_add_risk(self):
         info = self.taxonomy.get()
         return info
+
+    # RF06 Notificar_Reinicio_Taxonomia
     def question_restart_taxonomy(self):
         respuesta = tk.messagebox.askquestion("Restablecer Taxonomía","¿Estas seguro que quieres reiniciar la taxonomia?")
         return respuesta

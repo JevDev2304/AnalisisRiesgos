@@ -3,7 +3,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
 
-def enviar_correo( destinatario, asunto, mensaje, contraseña="Jevo2304*" ,remitente="analisisriesgosmetodologias@outlook.com"):
+def enviar_correo( destinatario, asunto, mensaje, contraseña ="Jevo2304*" ,remitente="analisisriesgosmetodologias@outlook.com"):
     # Obtener el dominio del remitente y del destinatario
     dominio_remitente = remitente.split('@')[1].lower()
     dominio_destinatario = destinatario.split('@')[1].lower()
