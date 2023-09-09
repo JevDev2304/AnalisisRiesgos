@@ -1,17 +1,17 @@
-# Repositorio Proyecto Analisis de Riesgos 🧩
-###### En este repositorio encontraras el proyecto de ingeniería de requisitos , del curso dado por la Universidad de Medellín 🏢.
-### ¿Qué hay implementado?🤔
+# Risk Analysis Project Repository 🧩
+###### In this repository, you will find the requirements engineering project from the course offered by the University of Medellín 🏢.
+### What is Implemented? 🤔
 
-- Autenticaciones y validaciones relacionada al manejo de usuarios. ℹ️
+- User authentication and validation features. ℹ️
 
-- Programa 100% hecho en Python.🐍
+- 100% program written in Python. 🐍
 
-- Interfaz Grafica hecha en tkinter. 😲
+- Graphical user interface created using tkinter. 😲
 
-- Implementación de POO. 👨🏻‍💻
+- Object-oriented programming (OOP) implementation. 👨🏻‍💻
 
-- Implementación de Modelo-Vista-Controlador. 🤖
+- Model-View-Controller (MVC) implementation. 🤖
 
-- Entre otras muchas librerias que se usaron para la implementación del proyecto.📖
+- Along with various libraries used for the project's implementation. 📖
 
-Posdata: Si quieres aprender tkinter, este curso es de gran utilidad : [Curso-Python-Tkinter](https://www.youtube.com/watch?v=yQSEXcf6s2I&list=PLCC34OHNcOtoC6GglhF3ncJ5rLwQrLGnV&ab_channel=Codemy.com "Curso-Tkinter-Codemy") 🙃
+Postscript: If you want to learn tkinter, this course is very useful: [Python-Tkinter-Course](https://www.youtube.com/watch?v=yQSEXcf6s2I&list=PLCC34OHNcOtoC6GglhF3ncJ5rLwQrLGnV&ab_channel=Codemy.com "Tkinter Course by Codemy") 🙃
